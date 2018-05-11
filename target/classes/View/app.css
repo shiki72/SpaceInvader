@@ -1,0 +1,118 @@
+#root {
+    -fx-background-image: url("space.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 500 600;
+    -fx-background-position: center center;
+}
+
+#player {
+    -fx-background-image: url("player.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 50 50;
+}
+
+#mob1 {
+    -fx-background-image: url("mob1.png");
+    //-fx-rotate: 180;
+    -fx-background-repeat: stretch;
+    -fx-background-size: 50 50;
+}
+#mob2 {
+    -fx-background-image: url("mob2.png");
+    //-fx-rotate: 180;
+    -fx-background-repeat: stretch;
+    -fx-background-size: 50 50;
+}
+#mob2_1 {
+    -fx-background-image: url("mob2_1.png");
+    //-fx-rotate: 180;
+    -fx-background-repeat: stretch;
+    -fx-background-size: 50 50;
+}
+
+#bullet {
+    -fx-background-image: url("bullet.png");
+    -fx-rotate: 180;
+    -fx-background-repeat: stretch;
+    -fx-background-size: 50 50;
+}
+
+#start {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+    -fx-font-size: 40px;
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-stroke: white;
+    -fx-font-family: "Comic Sans MS";
+}
+
+#start:hover {
+    -fx-text-fill: yellow;
+    -fx-stroke: black;
+}
+
+#start:pressed {
+    -fx-text-fill: lightblue;
+    -fx-stroke: black;
+}
+
+#exit {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+    -fx-font-size: 40px;
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-stroke: white;
+    -fx-font-family: "Comic Sans MS";
+}
+
+#exit:hover {
+    -fx-text-fill: yellow;
+    -fx-stroke: black;
+}
+
+#exit:pressed {
+    -fx-text-fill: lightblue;
+    -fx-stroke: black;
+}
+
+#text {
+    -fx-font-family: "Comic Sans MS";
+    -fx-fill: red;
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+    -fx-stroke: white;
+}
+
+#score {
+    -fx-font-family: "Comic Sans MS";
+    -fx-fill: yellow;
+    -fx-font-size: 20px;
+}
+
+#gameover {
+    -fx-font-family: "Comic Sans MS";
+    -fx-fill: red;
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+    -fx-stroke: white;
+}
+
+#scoretext {
+    -fx-font-family: "Comic Sans MS";
+    -fx-fill: red;
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+    -fx-stroke: white;
+}
+
+#name {
+    -fx-font-family: "Comic Sans MS";
+    -fx-fill: red;
+    -fx-font-size: 50px;
+    -fx-font-weight: bold;
+    -fx-stroke: white;
+}
