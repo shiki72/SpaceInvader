@@ -15,12 +15,12 @@ public class Enemy {
     private static final int MOVEX = 1;
     private static final int MOVEY = 10;
 
+    /**This is the {@code Enemy}'s constructor where it's properties will set.
+     *
+     * @param posX is the {@code Enemy}'s horizontal position.
+     * @param posY is the {@code Enemy}'s vertical position.
+     * @param tmp will be set to the life point.*/
     public Enemy(int posX, int posY, int tmp) {
-        //enemy.setStyle("-fx-background-image: url(\"enemy.png\");");
-        /*enemy.setStyle("-fx-background-image: url(\"enemy.png\");\n" +
-                "    -fx-rotate: 180;\n" +
-                "    -fx-background-repeat: stretch;\n" +
-                "    -fx-background-size: 50 50;");*/
         PosX = posX;
         startPosX = PosX;
         startPosY = PosY;
@@ -37,8 +37,14 @@ public class Enemy {
         }
     }
 
+    /**This method will set the {@code Enemy}'s visibility.*/
+    public void setVisible(boolean bool) {
+        this.enemy.setVisible(bool);
+    }
+
     private int direction = 1;
 
+    /**This method is doing the {@code Enemy}'s moving at the scene.*/
     public void move() {
         if (getPosX() - startPosX == 0) {
             setPosY(getPosY() + MOVEY);
@@ -52,35 +58,41 @@ public class Enemy {
         enemy.setLayoutY(PosY);
     }
 
-    public void setVisible(boolean bool) {
-        enemy.setVisible(bool);
-    }
-
+    /**@return the {@code Enemy}'s container.*/
     public Pane getEnemy() {
         return enemy;
     }
 
+    /**@return the {@code Enemy}'s horizontal position.*/
     public int getPosX() {
-
         return PosX;
     }
 
+    /**This method will set the {@code Enemy}'s horizontal position.
+     *
+     * @param posX is the horizontal position.*/
     public void setPosX(int posX) {
         PosX = posX;
     }
 
+    /**@return the {@code Enemy}'s vertical position.*/
     public int getPosY() {
         return PosY;
     }
 
+    /**This method will set the {@code Enemy}'s vertical position.
+     *
+     * @param posY is the vertical position.*/
     public void setPosY(int posY) {
         PosY = posY;
     }
 
+    /**@return the {@code Enemy}'s current life points.*/
     public int getLife() {
         return life;
     }
 
+    /**@param life will be set to the {@code Enenmy}'s life point.*/
     public void setLife(int life) {
         this.life = life;
     }

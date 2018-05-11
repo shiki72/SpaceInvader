@@ -25,8 +25,10 @@ public class GameOver {
         name.setText("Name:");
         name.setLayoutX(100);
         name.setLayoutY(350);
+        textField.setId("textfield");
         textField.setLayoutX(200);
-        textField.setLayoutY(350);
+        textField.setLayoutY(330);
+        exit.setId("exitbtn");
         exit.setText("EXIT");
         exit.setLayoutX(200);
         exit.setLayoutY(400);

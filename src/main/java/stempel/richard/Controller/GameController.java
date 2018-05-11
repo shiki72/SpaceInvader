@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import org.pmw.tinylog.Logger;
 import stempel.richard.Model.*;
 import stempel.richard.Model.Database.Entity.Board;
 import stempel.richard.Service.BoardService;
@@ -42,6 +43,11 @@ public class GameController implements Serializable {
 
     private BoardService boardService;
 
+    /**
+     * This is the main controller method where all the keyboard and mouse input will be handled.
+     *
+     * @throws IOException if exception occured.*/
+
     public GameController() throws IOException {
         this.root = new Pane();
         this.root.setPrefSize(WIDTH, HEIGHT);
@@ -49,19 +55,18 @@ public class GameController implements Serializable {
         this.scene = new Scene(this.root, WIDTH, HEIGHT);
 
 
+        Logger.info("Program started.");
 
         //
         // Inicializalas
         //
 
-        //this.startTime = time;
         this.menu = new Menu(175,300,175,400);
         this.player = new Player(225, 500);
         this.level = new Level(1);
         this.score = new Score("Score");
         this.paused = new Paused("PAUSED");
         this.gameOver = new GameOver("GAME OVER");
-
 
         //
         // Gyokerhez adas
@@ -74,17 +79,15 @@ public class GameController implements Serializable {
         this.paused.addTo(root);
         this.gameOver.addTo(root);
 
-
-
         boardService = new BoardService();
-
-
 
         //
         //  Mozgatasok kezelese
         //
 
-        //PlayerController playerController = new PlayerController(this.scene, this.left, this.right);
+        /**
+         * This {@code EventHandler} will handle the left and right key buttons if the are pressed.
+         * */
 
         scene.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             @Override
@@ -98,6 +101,10 @@ public class GameController implements Serializable {
             }
         });
 
+        /**
+         * This {@code EventHandler} will handle the left and right key buttons if the are released.
+         * */
+
         scene.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -110,20 +117,23 @@ public class GameController implements Serializable {
             }
         });
 
-        //this.left = playerController.isLeft();
-        //this.right = playerController.isRight();
-
-
+        /**Handle the start button pressed at the menu screen.*/
         this.menu.getStart().setOnMouseClicked(event -> {
+            Logger.info("Game started.");
             this.status = Status.STAGE;
             this.startTime = getTime();
             this.time = getTime() - startTime;
-            score.getText().setText(time.toString());
+            score.getText().setText("Time: " + time.toString());
             checkVisible();
         });
+
+        /**Handle the exit button pressed at the menu screen.*/
         this.menu.getExit().setOnMouseClicked(event -> {
+            Logger.info("Exiting the program.");
             System.exit(0);
         });
+
+        /**Handle the exit button pressed at the game over screen.*/
         this.gameOver.getExit().setOnMouseClicked(event -> {
             String tmp = gameOver.getTextField().getText();
             System.out.println(tmp);
@@ -131,6 +141,8 @@ public class GameController implements Serializable {
             boardService.persist(board);
             System.exit(0);
         });
+
+        /**Handle other key inputs.*/
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
@@ -139,21 +151,19 @@ public class GameController implements Serializable {
                     bullets.add(shot);
                     shot.addTo(root);
                 }
-                if (event.getCode() == KeyCode.K) {
-                    gameOver.getScore().setText(time.toString());
-                    setStatus(Status.GAMEOVER);
-                    checkVisible();
-                }
                 if (event.getCode() == KeyCode.P) {
                     if (getStatus() == Status.PAUSED) {
+                        Logger.info("Game resumed.");
                         startTime = getTime() - time;
                         setStatus(Status.STAGE);
                     } else if (getStatus() == Status.STAGE) {
+                        Logger.info("Game paused.");
                         setStatus(Status.PAUSED);
                     }
                     checkVisible();
                 }
                 if (event.getCode() == KeyCode.ESCAPE) {
+                    Logger.info("Exiting from the game.");
                     System.exit(0);
                 }
             }
@@ -165,6 +175,8 @@ public class GameController implements Serializable {
         //  CSS behuzasa
         //
 
+
+        /**Loading the css file.*/
         new CssLoader(scene);
 
 
@@ -174,14 +186,19 @@ public class GameController implements Serializable {
         //
 
         new AnimationTimer() {
+
+            /**
+             * Handle the {@code Enemy} and the {@code Bullet} movement, counting playing time
+             * and redirrect us to the game over screen if the ship die or all the enemies ar dead.*/
             @Override
             public void handle(long currentNanoTime) {
                 Animation animation = new Animation();
                 if (getStatus() == Status.STAGE) {
                     time = getTime() - startTime;
-                    score.getText().setText(time.toString());
+                    score.getText().setText("Time: " + time.toString());
 
                     if (animation.hitplayer(level.getEnemies(), player)) {
+                        Logger.info("Game is over.");
                         setStatus(Status.GAMEOVER);
                         checkVisible();
                     }
@@ -216,14 +233,18 @@ public class GameController implements Serializable {
                     //System.out.println(bullet.size());
 
                     if (animation.isNotVisible(level.getEnemies())) {
+                        Logger.info("Game is over.");
                         setStatus(Status.GAMEOVER);
-                        gameOver.getScore().setText(time.toString());
+                        gameOver.getScore().setText("Time: " + time.toString());
                         checkVisible();
                     }
                 }
             }
         }.start();
     }
+
+    /**
+     * This method is checking which screen should be visible.*/
 
     public void checkVisible() {
         this.menu.checkVisible(this.status);
@@ -237,30 +258,29 @@ public class GameController implements Serializable {
         this.gameOver.checkVisible(this.status);
     }
 
+    /**
+     * @return the current time in seconds.
+     * */
+
     private Integer getTime () {
         return LocalDateTime.now().getHour()*3600 + LocalDateTime.now().getMinute() * 60 + LocalDateTime.now().getSecond();
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public Score getScore() {
-        return score;
-    }
-
+    /**@return the game scene.*/
     public Scene getScene() {
         return scene;
     }
 
-    public Pane getRoot() {
-        return root;
-    }
-
+    /**This method is set the {@code Status} of the scene.
+     *
+     * @param status is going to have a new state.*/
     public void setStatus(Status status) {
         this.status = status;
     }
 
+    /**This method asks the current scene {@code Status}.
+     *
+     * @return the scene's {@code Status} value.*/
     public Status getStatus() {
         return status;
     }

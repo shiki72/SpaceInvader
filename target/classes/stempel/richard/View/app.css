@@ -103,16 +103,31 @@
 
 #scoretext {
     -fx-font-family: "Comic Sans MS";
-    -fx-fill: red;
-    -fx-font-size: 50px;
+    -fx-fill: doggerblue;
+    -fx-font-size: 30px;
     -fx-font-weight: bold;
     -fx-stroke: white;
 }
 
 #name {
     -fx-font-family: "Comic Sans MS";
-    -fx-fill: red;
-    -fx-font-size: 50px;
+    -fx-fill: doggerblue;
+    -fx-font-size: 30px;
     -fx-font-weight: bold;
     -fx-stroke: white;
+}
+
+#exitbtn {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+    -fx-font-size: 30px;
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-stroke: white;
+    -fx-font-family: "Comic Sans MS";
+}
+
+#exitbtn:hover {
+    -fx-text-fill: yellow;
 }

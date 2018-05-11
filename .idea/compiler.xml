@@ -19,10 +19,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="SpaceInvader" />
         <module name="Test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="SpaceInvader" target="1.8" />
       <module name="Test" target="1.8" />
     </bytecodeTargetLevel>
   </component>

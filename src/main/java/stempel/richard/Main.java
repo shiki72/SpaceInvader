@@ -7,6 +7,12 @@ import stempel.richard.Controller.GameController;
 
 public class Main extends Application {
 
+    /**
+     * Launch the application
+     *
+     * @param primaryStage is the game window
+     * @throws Exception if exveption occured*/
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Test");
@@ -19,7 +25,10 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
+    /**
+     * Main method of the SpaceIvader application
+     *
+     * @param args is not used*/
     public static void main(String[] args) {
         launch(args);
     }
