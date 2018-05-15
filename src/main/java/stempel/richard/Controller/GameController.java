@@ -46,7 +46,7 @@ public class GameController implements Serializable {
     /**
      * This is the main controller method where all the keyboard and mouse input will be handled.
      *
-     * @throws IOException if exception occured.*/
+     * @throws IOException if exception occurred.*/
 
     public GameController() throws IOException {
         this.root = new Pane();
@@ -63,7 +63,7 @@ public class GameController implements Serializable {
 
         this.menu = new Menu(175,300,175,400);
         this.player = new Player(225, 500);
-        this.level = new Level(1);
+        this.level = new Level(4);
         this.score = new Score("Score");
         this.paused = new Paused("PAUSED");
         this.gameOver = new GameOver("GAME OVER");
@@ -210,7 +210,7 @@ public class GameController implements Serializable {
                             level.getEnemies().get(tmp.get(0)).setVisible(false);
                             level.getEnemies().remove(tmp.get(0));
                         } else {
-                            System.out.println(level.getEnemies().get(tmp.get(0)).getEnemy().getId() + "_" + level.getEnemies().get(tmp.get(0)).getLife());
+                            //System.out.println(level.getEnemies().get(tmp.get(0)).getEnemy().getId() + "_" + level.getEnemies().get(tmp.get(0)).getLife());
                             level.getEnemies().get(tmp.get(0)).getEnemy().setId(level.getEnemies().get(tmp.get(0)).getEnemy().getId() + "_" + level.getEnemies().get(tmp.get(0)).getLife());
                         }
                         if (bullets.get(tmp.get(1)).isHit()) {

@@ -13,6 +13,9 @@ public class GameOver {
     private Text name = new Text();
     private Button exit = new Button();
 
+    /**This is the contructor where the game over scene's propetries will set.
+     *
+     * @param str is a {@code String} which will be set to the main text's text.*/
     public GameOver(String str) {
         text.setText(str);
         text.setId("gameover");
@@ -34,10 +37,17 @@ public class GameOver {
         exit.setLayoutY(400);
     }
 
+    /**This is the method where all element of the {@code GameOver} class will add to the root
+     * element as it's children.
+     *
+     * @param root it the {@code Pane} where the elements will add to;*/
     public void addTo(Pane root) {
         root.getChildren().addAll(this.text, this.score, this.name, this.exit, this.textField);
     }
 
+    /**This method will set the visibility of the elements depends on the current scene.
+     *
+     * @param status is the variable which says that which game scene ar we at.*/
     public void checkVisible(Status status) {
         if (status == Status.GAMEOVER) {
             this.exit.setVisible(true);
@@ -54,10 +64,12 @@ public class GameOver {
         }
     }
 
+    /**@return the main text of the {@code GameOver} class.*/
     public Text getText() {
         return text;
     }
 
+    /**valami*/
     public void setVisible(boolean bool) {
         text.setVisible(bool);
         score.setVisible(bool);
@@ -66,34 +78,42 @@ public class GameOver {
         exit.setVisible(bool);
     }
 
+    /**@return the score at the end of the game.*/
     public Text getScore() {
         return score;
     }
 
+    /**@param score is the input score which will be set to the class's score variable.*/
     public void setScore(Text score) {
         this.score = score;
     }
 
+    /**@return the text field where the player will wrote her/his name.*/
     public TextField getTextField() {
         return textField;
     }
 
+    /**@param textField will set to the {@code GameOver} class's text field.*/
     public void setTextField(TextField textField) {
         this.textField = textField;
     }
 
+    /**@return the name text.*/
     public Text getName() {
         return name;
     }
 
+    /**@param name will set to the {@code GameOver} class's name text.*/
     public void setName(Text name) {
         this.name = name;
     }
 
+    /**@return the {@code GameOver} class's exit {@code Button}.*/
     public Button getExit() {
         return exit;
     }
 
+    /**@param exit will be set to the {@code GameOver} class's exit {@code Button}*/
     public void setExit(Button exit) {
         this.exit = exit;
     }

@@ -15,29 +15,41 @@ public class BoardDAO implements BoardDAOInterface<Board, Integer> {
     private Session currentSession;
     private Transaction currentTransaction;
 
+    /**This is an empty constructor.*/
     public BoardDAO() {
     }
 
+    /**This method will open a new session.
+     *
+     * @return the opened session.*/
     public Session openCurrentSession() {
         currentSession = getSessionFactory().openSession();
         return currentSession;
     }
 
+    /**This method will open a new session with transaction.
+     *
+     * @return the openes session.*/
     public Session openCurrentSessionwithTransaction() {
         currentSession = getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
     }
 
+    /**Close the opened session.*/
     public void closeCurrentSession() {
         currentSession.close();
     }
 
+    /**Commit the transaction and close the opened session.*/
     public void closeCurrentSessionwithTransaction() {
         currentTransaction.commit();
         currentSession.close();
     }
 
+    /**Makes a {@code SessionFactory}.
+     *
+     * @return the created {@code SessionFactory}.*/
     private static SessionFactory getSessionFactory() {
         Configuration configuration = new Configuration().configure("/hibernate.cfg.xml");
         configuration.addAnnotatedClass(Board.class);
@@ -46,18 +58,22 @@ public class BoardDAO implements BoardDAOInterface<Board, Integer> {
         return configuration.buildSessionFactory(builder.build());
     }
 
+    /**@return the current session.*/
     public Session getCurrentSession() {
         return currentSession;
     }
 
+    /**@param currentSession will be set to the current session.*/
     public void setCurrentSession(Session currentSession) {
         this.currentSession = currentSession;
     }
 
+    /**@return the current transaction.*/
     public Transaction getCurrentTransaction() {
         return currentTransaction;
     }
 
+    /**@param currentTransaction will be set to the current transaction.*/
     public void setCurrentTransaction(Transaction currentTransaction) {
         this.currentTransaction = currentTransaction;
     }

@@ -26,12 +26,14 @@ public class Bullet {
         bullet.setPrefHeight(HEIGHT);
     }
 
-    /**This method will add the {@code Bullet} to the {@param root} container.*/
+    /**This method will add the {@code Bullet} to the root.
+     *
+     * @param root is the root container.*/
     public void addTo(Pane root) {
         root.getChildren().add(this.bullet);
     }
 
-    /**This methond will set the {@code Bullet}'s container's visibility.
+    /**This method will set the {@code Bullet}'s container's visibility.
      *
      * @param status is the current scene {@code Status}.*/
     public void checkVisible(Status status) {
